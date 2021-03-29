@@ -9,15 +9,16 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveSplit.Crash4LoadRemover</RootNamespace>
     <AssemblyName>LiveSplit.Crash4LoadRemover</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\LiveSplit\LiveSplit\bin\Debug\Components\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -43,7 +44,40 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ComponentSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ComponentSettings.Designer.cs">
+      <DependentUpon>ComponentSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Crash4LoadRemoverFactory.cs" />
+    <Compile Include="Crash4LoadRemoverComponent.cs" />
+    <Compile Include="Logging\Logging.cs" />
+    <Compile Include="Memory\CrashMemory.cs" />
+    <Compile Include="Memory\GameMemory.cs" />
+    <Compile Include="Memory\GamePointer.cs" />
+    <Compile Include="Memory\IGamePointer.cs" />
+    <Compile Include="Memory\Reader\MemInfo.cs" />
+    <Compile Include="Memory\Reader\MemoryReader.cs" />
+    <Compile Include="Memory\Reader\MemorySearcher.cs" />
+    <Compile Include="Memory\Reader\Module64.cs" />
+    <Compile Include="Memory\Reader\ModuleInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\LiveSplit\LiveSplit\LiveSplit.Core\LiveSplit.Core.csproj">
+      <Project>{6de847db-20a3-4848-aeee-1b4364aecdfb}</Project>
+      <Name>LiveSplit.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\LiveSplit\LiveSplit\UpdateManager\UpdateManager.csproj">
+      <Project>{56dea3a0-2eb7-493b-b50f-a5e3aa8ae52a}</Project>
+      <Name>UpdateManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\ComponentSettings.resx">
+      <DependentUpon>ComponentSettings.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

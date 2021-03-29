@@ -1,0 +1,77 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LiveSplit.Crash4LoadRemover.Memory
+{
+    public class CrashMemory : GameMemory
+    {
+        private IGamePointer[] pointers;
+
+        public CrashMemory() : base("Lava-Win64-Shipping")
+        {
+            Loading = new GamePointer<byte>("Loading", true, 0x03C34B70, 0x718); //First part of the loading screen, showing the name of the level and such
+            Swirl = new GamePointer<byte>("Swirl", true, 0x0416E510, 0x7C0, 0xC0, 0x2F8); //Second part of the loading screen, showing the blue swirl
+            //The memory value for Swirl also interacts with other elements in the game sometimes but it's not an issue here because both values have to be combined to count as a load
+            // Pointers are ordered alphabetically to make logging a bit nicer. There's no performance difference regardless.
+            pointers = new IGamePointer[]
+            {
+                Loading,
+                Swirl,
+            };
+        }
+
+        public GamePointer<byte> Loading { get; }
+        public GamePointer<byte> Swirl { get; }
+
+        protected override void OnHook(Process process)
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine($"[Memory] Process hooked ({DateTime.Now}).");
+
+            for (int i = 0; i < pointers.Length; i++)
+            {
+                IGamePointer p = pointers[i];
+                p.Process = process;
+                p.Validate();
+
+                string value = $"[Memory] {p.Name} pointer {(p.IsPointerValid ? "valid" : "invalid")}.";
+
+                if (i == pointers.Length - 1)
+                {
+                    builder.Append(value);
+                }
+                else
+                {
+                    builder.AppendLine(value);
+                }
+            }
+
+            Logging.Write(builder.ToString());
+        }
+
+        protected override void OnUnhook()
+        {
+            Logging.Write("[Memory] Process unhooked.");
+
+            foreach (IGamePointer p in pointers)
+            {
+                p.Process = null;
+            }
+        }
+
+        public void Refresh()
+        {
+            foreach (IGamePointer p in pointers)
+            {
+                if (p.IsPointerValid && p.IsRefreshEnabled)
+                {
+                    p.Refresh();
+                }
+            }
+        }
+    }
+}

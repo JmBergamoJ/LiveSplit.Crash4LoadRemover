@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/LiveSplit.Crash4LoadRemover/test.lsl
+/LiveSplit.Crash4LoadRemover/Enums
+/LiveSplit.Crash4LoadRemover/Display
+/LiveSplit.Crash4LoadRemover/Data
+/.nuget
