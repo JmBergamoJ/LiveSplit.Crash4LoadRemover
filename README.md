@@ -8,7 +8,7 @@ This component uses Game Memory data to automatically detect loading screens and
 
 
 # Special Thanks
-Special thanks go to McCrodi from the Crash Speedrunning Discord, who helped me by providing Memory Data and past experiences with similar tools.
+Special thanks go to McCrodi from the Crash Speedrunning Discord,by providing Memory Data.
 
 # How does it work?
 The method works by scanning specific Memory Addresses where the game is considered in a Loading State.
