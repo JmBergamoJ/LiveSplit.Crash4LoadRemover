@@ -20,9 +20,9 @@ namespace LiveSplit.Crash4LoadRemover
 
         public string UpdateName => ComponentName;
 
-        public string XMLURL => string.Empty;
+        public string XMLURL => UpdateURL + "update.LiveSplit.CrashNSTLoadRemoval.xml";
 
-        public string UpdateURL => string.Empty;
+        public string UpdateURL => "https://raw.githubusercontent.com/JmBergamoJ/LiveSplit.Crash4LoadRemover/master/";
 
         public Version Version => Version.Parse("1.0");
 
