@@ -38,3 +38,7 @@ Note that since this autosplitter reads game memory during runtime, it unfortuan
 
 - The timer doesn't start automatically and doesn't end automatically. This is due to the fact that different categories have different end criteria. For the time being, make sure to split manually during the start and end of your run.
 - The tool currently splits automatically on any loading screens, if you activated the AutoSpliiter functionality.
+
+# Crash Speedrunning Discord
+
+Make sure to check out the [Crash HD Speedrunning Discord!](https://discord.gg/Rb9qjtU)
