@@ -9,7 +9,7 @@ This component scans the game's Memory data to automatically detect loading scre
 
 # Special Thanks
 Special thanks go to McCrodi from the Crash Speedrunning Discord,by providing Memory Data.
-You can check out his Script for LiveSplit on the file **Crash_Bandicoot_4_Load_Remover.asl**
+You can check out his ASL Script for LiveSplit [here](Crash_Bandicoot_4_Load_Remover.asl)
 
 # How does it work?
 The method works by scanning specific Memory Addresses where the game is considered to be in a Loading State.
