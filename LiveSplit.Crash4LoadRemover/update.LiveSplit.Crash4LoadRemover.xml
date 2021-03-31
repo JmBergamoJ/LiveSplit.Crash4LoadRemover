@@ -2,18 +2,17 @@
 <updates>
 	<update version="1.0.1">
 		<files>
-			<file path="Components/LiveSplit.Crash4LoadRemoval.dll" status="changed" />
+			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed" />
 		</files>
 		<changelog>
-			<change>Fixed an issue with the Game Timer not working correctly when quitting to main Menu.
-			When the tool does not detect the Swirl on a specific number of frames during loading, time is added back to Game Time, and Game Timer is resumed.
-			Added a new Setting for Maximum number of frames to wait for the Blue Swirl before removing the load time.
-			</change>
+			<change>Fixed an issue with the Game Timer not working correctly when quitting to main Menu.</change>
+			<change>When the tool does not detect the Swirl on a specific number of frames during loading, time is added back to Game Time, and Game Timer is resumed.</change>
+			<change>Added a new Setting for Maximum number of frames to wait for the Blue Swirl before removing the load time.</change>
 		</changelog>
 	</update>
 	<update version="1.0">
 		<files>
-			<file path="Components/LiveSplit.Crash4LoadRemoval.dll" status="changed" />
+			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed" />
 		</files>
 		<changelog>
 			<change>Initial Release. Everything works very basically.</change>
