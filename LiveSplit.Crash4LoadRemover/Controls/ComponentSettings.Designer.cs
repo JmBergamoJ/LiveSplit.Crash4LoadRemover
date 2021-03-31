@@ -29,9 +29,13 @@ namespace LiveSplit.Crash4LoadRemover.Controls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Crash4LoadRemoverSettings));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.gbAutoSplitter = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.framesToWaitForSwirl = new System.Windows.Forms.NumericUpDown();
             this.chkAutoSplitterDisableOnSkip = new System.Windows.Forms.CheckBox();
             this.lblVersion = new System.Windows.Forms.Label();
             this.chkSaveDetectionLog = new System.Windows.Forms.CheckBox();
@@ -41,9 +45,11 @@ namespace LiveSplit.Crash4LoadRemover.Controls
             this.panelSplits = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.gbAutoSplitter.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.framesToWaitForSwirl)).BeginInit();
             this.gbSplits.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +76,8 @@ namespace LiveSplit.Crash4LoadRemover.Controls
             // 
             // gbAutoSplitter
             // 
+            this.gbAutoSplitter.Controls.Add(this.label1);
+            this.gbAutoSplitter.Controls.Add(this.framesToWaitForSwirl);
             this.gbAutoSplitter.Controls.Add(this.chkAutoSplitterDisableOnSkip);
             this.gbAutoSplitter.Controls.Add(this.lblVersion);
             this.gbAutoSplitter.Controls.Add(this.chkSaveDetectionLog);
@@ -81,6 +89,41 @@ namespace LiveSplit.Crash4LoadRemover.Controls
             this.gbAutoSplitter.TabIndex = 5;
             this.gbAutoSplitter.TabStop = false;
             this.gbAutoSplitter.Text = "Setup";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.label1.Location = new System.Drawing.Point(128, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(141, 13);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "Max Frames to Wait for Swirl";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.label1, resources.GetString("label1.ToolTip"));
+            // 
+            // framesToWaitForSwirl
+            // 
+            this.framesToWaitForSwirl.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.framesToWaitForSwirl.Location = new System.Drawing.Point(275, 39);
+            this.framesToWaitForSwirl.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.framesToWaitForSwirl.Name = "framesToWaitForSwirl";
+            this.framesToWaitForSwirl.Size = new System.Drawing.Size(42, 20);
+            this.framesToWaitForSwirl.TabIndex = 46;
+            this.framesToWaitForSwirl.Value = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.framesToWaitForSwirl.ValueChanged += new System.EventHandler(this.framesToWaitForSwirl_ValueChanged);
             // 
             // chkAutoSplitterDisableOnSkip
             // 
@@ -191,6 +234,7 @@ namespace LiveSplit.Crash4LoadRemover.Controls
             this.tabPage2.ResumeLayout(false);
             this.gbAutoSplitter.ResumeLayout(false);
             this.gbAutoSplitter.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.framesToWaitForSwirl)).EndInit();
             this.gbSplits.ResumeLayout(false);
             this.gbSplits.PerformLayout();
             this.ResumeLayout(false);
@@ -210,5 +254,8 @@ namespace LiveSplit.Crash4LoadRemover.Controls
         private System.Windows.Forms.CheckBox chkSaveDetectionLog;
         private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.CheckBox chkAutoSplitterDisableOnSkip;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.NumericUpDown framesToWaitForSwirl;
     }
 }

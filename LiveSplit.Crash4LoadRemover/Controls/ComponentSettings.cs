@@ -22,6 +22,7 @@ namespace LiveSplit.Crash4LoadRemover.Controls
         private AutoSplitData autoSplitData = null;
         public bool AutoSplitterEnabled = false;
         public bool AutoSplitterDisableOnSkipUntilSplit = false;
+        public int MaxFramesToWaitForSwirl;
 
         public string DetectionLogFolderName = "Crash4LoadRemoverLog";
 
@@ -108,7 +109,6 @@ namespace LiveSplit.Crash4LoadRemover.Controls
             gameName = removeInvalidXMLCharacters(gameName);
             category = removeInvalidXMLCharacters(category);
 
-            //TODO: go through gameSettings to see if the game matches, enter info based on that.
             foreach (var control in dynamicAutoSplitterControls)
             {
                 tabPage2.Controls.Remove(control);
@@ -213,6 +213,7 @@ namespace LiveSplit.Crash4LoadRemover.Controls
             root.AppendChild(CreateNode(document, "SaveDetectionLog", SaveDetectionLog));
             root.AppendChild(CreateNode(document, "AutoSplitEnabled", enableAutoSplitterChk.Checked));
             root.AppendChild(CreateNode(document, "AutoSplitDisableOnSkipUntilSplit", chkAutoSplitterDisableOnSkip.Checked));
+            root.AppendChild(CreateNode(document, "MaxFramesToWaitForSwirl", framesToWaitForSwirl.Value));
 
 
             var splitsNode = document.CreateElement("AutoSplitGames");
@@ -306,6 +307,16 @@ namespace LiveSplit.Crash4LoadRemover.Controls
                     chkAutoSplitterDisableOnSkip.Checked = Convert.ToBoolean(element["AutoSplitDisableOnSkipUntilSplit"].InnerText);
                 }
 
+                if (element["MaxFramesToWaitForSwirl"] != null)
+                {
+                    framesToWaitForSwirl.Value = Convert.ToDecimal(element["MaxFramesToWaitForSwirl"].InnerText);
+                    MaxFramesToWaitForSwirl = Convert.ToInt32(framesToWaitForSwirl.Value);
+                }
+                else
+                {
+                    framesToWaitForSwirl.Value = MaxFramesToWaitForSwirl = 100; //Default value - For situations where you just update the dll and dont open the settings window.
+                }
+
                 if (element["SaveDetectionLog"] != null)
                 {
                     chkSaveDetectionLog.Checked = Convert.ToBoolean(element["SaveDetectionLog"].InnerText);
@@ -380,6 +391,11 @@ namespace LiveSplit.Crash4LoadRemover.Controls
         private void chkAutoSplitterDisableOnSkip_CheckedChanged(object sender, EventArgs e)
         {
             AutoSplitterDisableOnSkipUntilSplit = chkAutoSplitterDisableOnSkip.Checked;
+        }
+
+        private void framesToWaitForSwirl_ValueChanged(object sender, EventArgs e)
+        {
+            MaxFramesToWaitForSwirl = Convert.ToInt32(framesToWaitForSwirl.Value);
         }
     }
 

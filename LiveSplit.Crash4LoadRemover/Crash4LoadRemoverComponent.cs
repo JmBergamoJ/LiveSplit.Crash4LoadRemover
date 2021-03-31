@@ -25,6 +25,8 @@ namespace LiveSplit.UI.Components
         private List<string> SplitNames;
         private LiveSplitState liveSplitState;
         private bool LastSplitSkip = false;
+        private TimeSpan? loadStartTime;
+        private int framesSinceStartOfLoad = 0;
 
         private bool timerStarted = false;
 
@@ -67,12 +69,10 @@ namespace LiveSplit.UI.Components
         }
 
         public string ComponentName => "Crash 4: IAT Load Remover (Memory-Based)";
-
         public float HorizontalWidth => 0;
         public float VerticalHeight => 0;
         public float MinimumWidth => 0;
         public float MinimumHeight => 0;
-
         public float PaddingTop => 0;
         public float PaddingBottom => 0;
         public float PaddingLeft => 7;
@@ -237,6 +237,7 @@ namespace LiveSplit.UI.Components
         {
             if (timerStarted)
             {
+                loadStartTime = timer.CurrentState.CurrentTime.RealTime;
                 UpdateLoadingState(oldLoading, newLoading, false);
                 UpdateGameTimerState();
                 if (settings.AutoSplitterEnabled && !(settings.AutoSplitterDisableOnSkipUntilSplit && LastSplitSkip))
@@ -256,6 +257,8 @@ namespace LiveSplit.UI.Components
 
         private void OnSwirlChange(byte oldSwirl, byte newSwirl)
         {
+            framesSinceStartOfLoad = 0;
+            loadStartTime = null;
             if (timerStarted)
             {
                 if(loading)
@@ -284,6 +287,21 @@ namespace LiveSplit.UI.Components
 
                 ReloadLogFile();
             }
+            if(loading)
+                framesSinceStartOfLoad++;
+
+            if(loading && !doneLoading && framesSinceStartOfLoad >= settings.MaxFramesToWaitForSwirl) /*Arbitrary number of frames to wait*/
+            {
+                var currentGameTime = timer.CurrentState.CurrentTime.GameTime;
+                currentGameTime += timer.CurrentState.CurrentTime.RealTime - loadStartTime;
+                framesSinceStartOfLoad = 0;
+                UpdateLoadingState(1, 0, true);
+                timer.CurrentState.SetGameTime(currentGameTime);
+                UpdateGameTimerState();
+                loadStartTime = null;
+            }
+
+
             liveSplitState = state;
 
             UpdateMemoryRead();
