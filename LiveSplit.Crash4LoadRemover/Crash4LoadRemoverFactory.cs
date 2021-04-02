@@ -24,7 +24,7 @@ namespace LiveSplit.Crash4LoadRemover
 
         public string UpdateURL => "https://raw.githubusercontent.com/JmBergamoJ/LiveSplit.Crash4LoadRemover/master/";
 
-        public Version Version => Version.Parse("1.0.2");
+        public Version Version => Version.Parse("1.0.3");
 
         public IComponent Create(LiveSplitState state)
         {
