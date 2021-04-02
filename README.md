@@ -1,18 +1,18 @@
 # LiveSplit.Crash4LoadRemover
-LiveSplit component to automatically detect and remove loads from Crash Bandicoot 4: It's About Time, on PC.
+LiveSplit component to automatically detect and remove load times from Crash Bandicoot 4: It's About Time, on PC.
 
 This is adapted from [Thomasneff's LiveSplit.CrashNSTLoadRemoval](https://github.com/thomasneff/LiveSplit.CrashNSTLoadRemoval "Thomasneff's LiveSplit.CrashNSTLoadRemoval")
 and from [Grimelios's LiveSplit.Crash](https://github.com/Grimelios/LiveSplit.Crash "Grimelios's LiveSplit.Crash") Auto-Spliiter Component
 
-This component uses Game Memory data to automatically detect loading screens and pause the Game Timer accordingly.
+This component scans the game's Memory data to automatically detect loading screens and pause the Game Timer.
 
 
 # Special Thanks
 Special thanks go to McCrodi from the Crash Speedrunning Discord,by providing Memory Data.
-You can check out his Script for LiveSplit on the file **Crash_Bandicoot_4_Load_Remover.asl**
+You can check out his ASL Script for LiveSplit [here](Crash_Bandicoot_4_Load_Remover.asl)
 
 # How does it work?
-The method works by scanning specific Memory Addresses where the game is considered in a Loading State.
+The method works by scanning specific Memory Addresses where the game is considered to be in a Loading State.
 
 These memory values, while not perfect, seem to work decently well with the current PC patch of the game.
 
@@ -25,7 +25,7 @@ The tool is designed to be as easy to use as possible, in most cases requiring z
 # Known Issues
 If you want to use the AutoSplitter functionality, **all your Splits need to have different names!**. If you have Splits that share the same name, the AutoSplitter is not able to differentiate between them.
 
-Note that since this autosplitter reads game memory during runtime, it unfortuantely can't be used for console runs. If you're running Crash on a console, keep using the [image-based version](https://github.com/thomasneff/LiveSplit.CrashNSTLoadRemoval).
+Note that since this autosplitter reads game memory during runtime, it unfortuantely can't be used for console runs. If you're running Crash on a console, keep using the [image-based version](https://github.com/thomasneff/LiveSplit.Crash4LoadRemover).
 
 ## Installation instructions for LiveSplit
 - Download LiveSplit.Crash4LoadRemover.dll from the Releases section
@@ -37,7 +37,6 @@ Note that since this autosplitter reads game memory during runtime, it unfortuan
 ## Known deficiencies
 
 - The timer doesn't start automatically and doesn't end automatically. This is due to the fact that different categories have different end criteria. For the time being, make sure to split manually during the start and end of your run.
-- The tool currently splits automatically on any loading screens, if you activated the AutoSpliiter functionality.
 
 # Crash Speedrunning Discord
 
