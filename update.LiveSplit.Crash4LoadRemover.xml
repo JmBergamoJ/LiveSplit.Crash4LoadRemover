@@ -1,8 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <updates>
-<update version="1.0.3">
+	<update version="1.1">
 		<files>
-			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed" />
+			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed"/>
+		</files>
+		<changelog>
+			<change>Changed Memory Pointers for Game Patch 1 (1.1.04062021) [Thanks Crodi].</change>
+		</changelog>
+	</update>
+	<update version="1.0.3">
+		<files>
+			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed"/>
 		</files>
 		<changelog>
 			<change>Fixes for the Game Timer not resuming correctly when closing the game.</change>
@@ -10,7 +18,7 @@
 	</update>
 	<update version="1.0.2">
 		<files>
-			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed" />
+			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed"/>
 		</files>
 		<changelog>
 			<change>Fixed typos on Update files.</change>
@@ -18,7 +26,7 @@
 	</update>
 	<update version="1.0.1">
 		<files>
-			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed" />
+			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed"/>
 		</files>
 		<changelog>
 			<change>Fixed an issue with the Game Timer not working correctly when quitting to main Menu.</change>
@@ -28,7 +36,7 @@
 	</update>
 	<update version="1.0">
 		<files>
-			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed" />
+			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed"/>
 		</files>
 		<changelog>
 			<change>Initial Release. Everything works very basically.</change>

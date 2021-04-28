@@ -13,10 +13,22 @@ namespace LiveSplit.Crash4LoadRemover.Memory
 
         public CrashMemory() : base("Lava-Win64-Shipping")
         {
-            Loading = new GamePointer<byte>("Loading", true, 0x03C34B70, 0x718); //First part of the loading screen, showing the name of the level and such
-            Swirl = new GamePointer<byte>("Swirl", true, 0x0416E510, 0x7C0, 0xC0, 0x2F8); //Second part of the loading screen, showing the blue swirl
+            #region Memory Pointers
+
+            #region Release Version
+            //Loading = new GamePointer<byte>("Loading", true, 0x03C34B70, 0x718); //First part of the loading screen, showing the name of the level and such
+            //Swirl = new GamePointer<byte>("Swirl", true, 0x0416E510, 0x7C0, 0xC0, 0x2F8); //Second part of the loading screen, showing the blue swirl
             //The memory value for Swirl also interacts with other elements in the game sometimes but it's not an issue here because both values have to be combined to count as a load
             // Pointers are ordered alphabetically to make logging a bit nicer. There's no performance difference regardless.
+            #endregion
+
+            #region Patch 1 - 1.1.04062021+
+            Loading = new GamePointer<byte>("Loading", true, 0x041A1538, 0xB0);
+            Swirl = new GamePointer<byte>("Swirl", true, 0x041883A0, 0x7C0, 0xC0, 0x2F8);
+            #endregion
+
+            #endregion
+
             pointers = new IGamePointer[]
             {
                 Loading,
