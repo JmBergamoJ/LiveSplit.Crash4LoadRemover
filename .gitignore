@@ -366,3 +366,4 @@ FodyWeavers.xsd
 /LiveSplit.Crash4LoadRemover/Display
 /LiveSplit.Crash4LoadRemover/Data
 /.nuget
+/Components
