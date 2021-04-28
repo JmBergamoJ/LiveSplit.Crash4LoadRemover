@@ -2,6 +2,7 @@
 using LiveSplit.Model;
 using LiveSplit.UI.Components;
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace LiveSplit.Crash4LoadRemover
 
         public string UpdateURL => "https://raw.githubusercontent.com/JmBergamoJ/LiveSplit.Crash4LoadRemover/master/";
 
-        public Version Version => Version.Parse("1.0.3");
+        public Version Version => Version.Parse(FileVersionInfo.GetVersionInfo(typeof(Crash4LoadRemoverFactory).Assembly.Location).FileVersion);
 
         public IComponent Create(LiveSplitState state)
         {
