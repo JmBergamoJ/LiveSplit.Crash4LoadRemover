@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("LiveSplit.Crash4LoadRemover")]
-[assembly: AssemblyDescription("A Load Detection Component for LiveSplit for Crash 4 on PC")]
+[assembly: AssemblyTitle("LiveSplit.Crash4LoadRemover.Steam")]
+[assembly: AssemblyDescription("A Load Detection Component for LiveSplit for the Steam Version of Crash 4 on PC")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("LiveSplit.Crash4LoadRemover")]
-[assembly: AssemblyCopyright("Copyright ©  José Marciel Bergamo Junior 2021")]
+[assembly: AssemblyProduct("LiveSplit.Crash4LoadRemover.Steam")]
+[assembly: AssemblyCopyright("Copyright ©  José Marciel Bergamo Junior 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1")]
-[assembly: AssemblyFileVersion("1.1")]
+[assembly: AssemblyVersion("1.0")]
+[assembly: AssemblyFileVersion("1.0")]

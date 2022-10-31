@@ -15,7 +15,8 @@ namespace LiveSplit.Crash4LoadRemover.Memory
 		bool IsRefreshEnabled { get; set; }
 		bool IsPointerValid { get; }
 		string Name { get; }
-		void Validate();
+        string ModuleName { get; }
+        void Validate();
 		void Refresh();
 	}
 }

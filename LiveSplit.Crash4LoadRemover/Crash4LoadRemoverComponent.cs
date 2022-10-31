@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -237,8 +238,8 @@ namespace LiveSplit.UI.Components
         {
             if (timerStarted)
             {
-                loadStartTime = timer.CurrentState.CurrentTime.RealTime;
-                UpdateLoadingState(oldLoading, newLoading, false);
+                loadStartTime = timer.CurrentState.CurrentTime.GameTime;
+                UpdateLoadingState(oldLoading, newLoading, true);
                 UpdateGameTimerState();
                 if (settings.AutoSplitterEnabled && !(settings.AutoSplitterDisableOnSkipUntilSplit && LastSplitSkip))
                 {
@@ -258,24 +259,34 @@ namespace LiveSplit.UI.Components
         private void OnSwirlChange(byte oldSwirl, byte newSwirl)
         {
             framesSinceStartOfLoad = 0;
-            loadStartTime = null;
             if (timerStarted)
             {
-                if (loading)
-                    UpdateLoadingState(oldSwirl, newSwirl, true);
+                UpdateSwirlState(oldSwirl, newSwirl, true);
                 UpdateGameTimerState();
             }
+            loadStartTime = null;
         }
 
         private void UpdateGameTimerState()
         {
-            timer.CurrentState.IsGameTimePaused = loading || !doneLoading;
+            timer.CurrentState.IsGameTimePaused = (loading || !doneLoading);
         }
 
         private void UpdateLoadingState(byte oldState, byte newState, bool done)
         {
-            loading = oldState == 0 && newState == 1;
+            loading = oldState == 3 && newState == 1;
             doneLoading = done;
+        }
+
+        private void UpdateSwirlState(byte oldState, byte newState, bool done)
+        {
+            loading = newState != 0;
+            doneLoading = done;
+            if (loading)
+            {
+                var currentGameTime = loadStartTime;
+                timer.CurrentState.SetGameTime(currentGameTime);
+            }
         }
 
 
@@ -287,19 +298,18 @@ namespace LiveSplit.UI.Components
 
                 ReloadLogFile();
             }
-            if (loading)
-                framesSinceStartOfLoad++;
+            //if (loading)
+            //    framesSinceStartOfLoad++;
 
-            if (loading && !doneLoading && framesSinceStartOfLoad >= settings.MaxFramesToWaitForSwirl) /*Arbitrary number of frames to wait*/
-            {
-                var currentGameTime = timer.CurrentState.CurrentTime.GameTime;
-                currentGameTime += timer.CurrentState.CurrentTime.RealTime - loadStartTime;
-                framesSinceStartOfLoad = 0;
-                UpdateLoadingState(1, 0, true);
-                timer.CurrentState.SetGameTime(currentGameTime);
-                UpdateGameTimerState();
-                loadStartTime = null;
-            }
+            //if ((loading) && !doneLoading && framesSinceStartOfLoad >= settings.MaxFramesToWaitForSwirl) /*Arbitrary number of frames to wait*/
+            //{
+            //    var currentGameTime = timer.CurrentState.CurrentTime.GameTime;
+            //    currentGameTime += timer.CurrentState.CurrentTime.RealTime - loadStartTime;
+            //    framesSinceStartOfLoad = 0;
+            //    timer.CurrentState.SetGameTime(currentGameTime);
+            //    UpdateGameTimerState();
+            //    loadStartTime = null;
+            //}
 
 
             liveSplitState = state;
@@ -359,7 +369,7 @@ namespace LiveSplit.UI.Components
                     var currentGameTime = timer.CurrentState.CurrentTime.GameTime;
                     currentGameTime += timer.CurrentState.CurrentTime.RealTime - loadStartTime;
                     framesSinceStartOfLoad = 0;
-                    UpdateLoadingState(1, 0, true);
+                    UpdateLoadingState(1, 3, true);
                     timer.CurrentState.SetGameTime(currentGameTime);
                     UpdateGameTimerState();
                     loadStartTime = null;

@@ -11,7 +11,7 @@ namespace LiveSplit.Crash4LoadRemover.Memory
     {
         private IGamePointer[] pointers;
 
-        public CrashMemory() : base("Lava-Win64-Shipping")
+        public CrashMemory() : base("CrashBandicoot4")
         {
             #region Memory Pointers
 
@@ -23,8 +23,13 @@ namespace LiveSplit.Crash4LoadRemover.Memory
             #endregion
 
             #region Patch 1 - 1.1.04062021+
-            Loading = new GamePointer<byte>("Loading", true, 0x041A1538, 0xB0);
-            Swirl = new GamePointer<byte>("Swirl", true, 0x041883A0, 0x7C0, 0xC0, 0x2F8);
+            //Loading = new GamePointer<byte>("Loading", true, 0x041A1538, 0xB0);
+            //Swirl = new GamePointer<byte>("Swirl", true, 0x041883A0, 0x7C0, 0xC0, 0x2F8);
+            #endregion
+
+            #region Steam - Release
+            Loading = new GamePointer<byte>("Loading", "RTWorkQ.DLL", true, 0x26950);
+            Swirl = new GamePointer<byte>("Swirl", null, true, 0x043EF190, 0x7C0, 0x31C);
             #endregion
 
             #endregion

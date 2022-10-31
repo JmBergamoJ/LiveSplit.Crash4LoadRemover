@@ -11,17 +11,17 @@ namespace LiveSplit.Crash4LoadRemover
 	{
 		public static void Write(string value)
 		{
-			if (Console.IsOutputRedirected)
-			{
-				using (StreamWriter writer = new StreamWriter("_Crash4LR.log", true))
-				{
-					writer.WriteLine(value);
-				}
-			}
-			else
-			{
-				Console.WriteLine(value);
-			}
-		}
+            if (Console.IsOutputRedirected)
+            {
+                using (StreamWriter writer = new StreamWriter("_Crash4LR.log", true))
+                {
+                    writer.WriteLine(value);
+                }
+            }
+            else
+            {
+                Console.WriteLine(value);
+            }
+        }
 	}
 }

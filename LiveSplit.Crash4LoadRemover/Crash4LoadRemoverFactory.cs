@@ -13,9 +13,9 @@ namespace LiveSplit.Crash4LoadRemover
 {
     public class Crash4LoadRemoverFactory : IComponentFactory
     {
-        public string ComponentName => "Crash 4: IAT Load Remover (Memory-Based)";
+        public string ComponentName => "Crash 4: IAT Load Remover (Memory-Based) (Steam Ver.)";
 
-        public string Description => "Automatically detects and removes loads (GameTime) for Crash Bandicoot 4: It's About Time on PC.";
+        public string Description => "Automatically detects and removes loads (GameTime) for Crash Bandicoot 4: It's About Time on PC (Steam).";
 
         public ComponentCategory Category => ComponentCategory.Control;
 
@@ -23,7 +23,7 @@ namespace LiveSplit.Crash4LoadRemover
 
         public string XMLURL => UpdateURL + "update.LiveSplit.Crash4LoadRemover.xml";
 
-        public string UpdateURL => "https://raw.githubusercontent.com/JmBergamoJ/LiveSplit.Crash4LoadRemover/master/";
+        public string UpdateURL => "https://raw.githubusercontent.com/JmBergamoJ/LiveSplit.Crash4LoadRemover/steam/";
 
         public Version Version => Version.Parse(FileVersionInfo.GetVersionInfo(typeof(Crash4LoadRemoverFactory).Assembly.Location).FileVersion);
 

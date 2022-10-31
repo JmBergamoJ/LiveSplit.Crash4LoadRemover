@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveSplit.Crash4LoadRemover</RootNamespace>
-    <AssemblyName>LiveSplit.Crash4LoadRemover</AssemblyName>
+    <AssemblyName>LiveSplit.Crash4LoadRemover.Steam</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,10 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-	  <Reference Include="LiveSplit.Core">
-		  <HintPath>..\..\bin\Release\LiveSplit.Core.dll</HintPath>
-		  <Private>False</Private>
-	  </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -46,11 +42,6 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-	  <Reference Include="UpdateManager, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-		  <SpecificVersion>False</SpecificVersion>
-		  <HintPath>..\..\bin\Release\UpdateManager.dll</HintPath>
-		  <Private>False</Private>
-	  </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls\ComponentSettings.cs">
@@ -81,5 +72,19 @@
   <ItemGroup>
     <Content Include="update.LiveSplit.Crash4LoadRemover.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\LiveSplit\LiveSplit\LiveSplit.Core\LiveSplit.Core.csproj">
+      <Project>{6de847db-20a3-4848-aeee-1b4364aecdfb}</Project>
+      <Name>LiveSplit.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\LiveSplit\LiveSplit\UpdateManager\UpdateManager.csproj">
+      <Project>{56dea3a0-2eb7-493b-b50f-a5e3aa8ae52a}</Project>
+      <Name>UpdateManager</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>
