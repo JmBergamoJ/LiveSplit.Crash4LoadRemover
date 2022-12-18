@@ -14,8 +14,8 @@
 		</files>
 		<changelog>
 			<change>"Fixed" detection log.</change>
-			<change>Added More distinctions between the bnet/steam components.</change>
-			<change>Fixed an issue with the game process hook that can happen when you launch the game before LiveSplit.</change>
+			<change>Added More visible distinctions between the bnet/steam components.</change>
+			<change>Fixed an issue with the game process hook that could happen when you launch the game before LiveSplit.</change>
 		</changelog>
 	</update>
 </updates>
