@@ -143,7 +143,7 @@ namespace LiveSplit.Crash4LoadRemover.Controls
             this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.lblVersion.Location = new System.Drawing.Point(6, 106);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(61, 16);
+            this.lblVersion.Size = new System.Drawing.Size(60, 16);
             this.lblVersion.TabIndex = 44;
             this.lblVersion.Text = "Version";
             // 
@@ -158,6 +158,7 @@ namespace LiveSplit.Crash4LoadRemover.Controls
             this.chkSaveDetectionLog.TabIndex = 43;
             this.chkSaveDetectionLog.Text = "Detection Log";
             this.chkSaveDetectionLog.UseVisualStyleBackColor = true;
+            this.chkSaveDetectionLog.Visible = false;
             // 
             // enableAutoSplitterChk
             // 
@@ -176,7 +177,7 @@ namespace LiveSplit.Crash4LoadRemover.Controls
             this.autoSplitCategoryLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.autoSplitCategoryLbl.Location = new System.Drawing.Point(6, 76);
             this.autoSplitCategoryLbl.Name = "autoSplitCategoryLbl";
-            this.autoSplitCategoryLbl.Size = new System.Drawing.Size(71, 16);
+            this.autoSplitCategoryLbl.Size = new System.Drawing.Size(70, 16);
             this.autoSplitCategoryLbl.TabIndex = 42;
             this.autoSplitCategoryLbl.Text = "Category";
             this.autoSplitCategoryLbl.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -207,7 +208,7 @@ namespace LiveSplit.Crash4LoadRemover.Controls
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label3.Location = new System.Drawing.Point(6, 16);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(53, 16);
+            this.label3.Size = new System.Drawing.Size(52, 16);
             this.label3.TabIndex = 45;
             this.label3.Text = "Name:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -218,7 +219,7 @@ namespace LiveSplit.Crash4LoadRemover.Controls
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.label6.Location = new System.Drawing.Point(240, 16);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(188, 16);
+            this.label6.Size = new System.Drawing.Size(187, 16);
             this.label6.TabIndex = 44;
             this.label6.Text = "Number of Loads per Split";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;

@@ -65,6 +65,11 @@ namespace LiveSplit.Crash4LoadRemover.Memory
                 {
                     builder.AppendLine(value);
                 }
+
+                if (!p.IsPointerValid)
+                {
+                    p.Process = Process = null; //reset the process to hook again because we need all the pointers to be working
+                }
             }
 
             Logging.Write(builder.ToString());

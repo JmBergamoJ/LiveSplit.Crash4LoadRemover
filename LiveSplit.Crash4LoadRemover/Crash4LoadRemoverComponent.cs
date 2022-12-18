@@ -69,7 +69,7 @@ namespace LiveSplit.UI.Components
             Logging.Write("[Component] Component created.");
         }
 
-        public string ComponentName => "Crash 4: IAT Load Remover (Memory-Based)";
+        public string ComponentName => "Crash 4: IAT Load Remover (Memory-Based) (Steam Ver.)";
         public float HorizontalWidth => 0;
         public float VerticalHeight => 0;
         public float MinimumWidth => 0;
@@ -97,7 +97,7 @@ namespace LiveSplit.UI.Components
             timer.InitializeGameTime();
             timerStarted = true;
 
-            ReloadLogFile();
+            //ReloadLogFile();
         }
 
         private void timer_OnUndoSplit(object sender, EventArgs e)
@@ -296,7 +296,7 @@ namespace LiveSplit.UI.Components
             {
                 settings.ChangeAutoSplitSettingsToGameName(GameName, GameCategory);
 
-                ReloadLogFile();
+                //ReloadLogFile();
             }
             //if (loading)
             //    framesSinceStartOfLoad++;

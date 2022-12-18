@@ -34,13 +34,13 @@ namespace LiveSplit.Crash4LoadRemover.Controls
         public Crash4LoadRemoverSettings(LiveSplitState state)
         {
             InitializeComponent();
-            SaveDetectionLog = chkSaveDetectionLog.Checked;
+            //SaveDetectionLog = chkSaveDetectionLog.Checked;
 
             AllGameAutoSplitSettings = new Dictionary<string, XmlElement>();
             dynamicAutoSplitterControls = new List<Control>();
             CreateAutoSplitControls(state);
             liveSplitState = state;
-            lblVersion.Text += " V " + Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
+            lblVersion.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
         }
 
         private void CreateAutoSplitControls(LiveSplitState state)
@@ -210,7 +210,7 @@ namespace LiveSplit.Crash4LoadRemover.Controls
         {
             XmlNode root = document.CreateElement("Settings");
             
-            root.AppendChild(CreateNode(document, "SaveDetectionLog", SaveDetectionLog));
+            //root.AppendChild(CreateNode(document, "SaveDetectionLog", SaveDetectionLog));
             root.AppendChild(CreateNode(document, "AutoSplitEnabled", enableAutoSplitterChk.Checked));
             root.AppendChild(CreateNode(document, "AutoSplitDisableOnSkipUntilSplit", chkAutoSplitterDisableOnSkip.Checked));
             root.AppendChild(CreateNode(document, "MaxFramesToWaitForSwirl", framesToWaitForSwirl.Value));
@@ -283,19 +283,10 @@ namespace LiveSplit.Crash4LoadRemover.Controls
 
         public void LoadSettings(XmlNode node)
         {
+            lblVersion.Text = "Version: " + Assembly.GetExecutingAssembly().GetName().Version.ToString(3);
             var element = (XmlElement)node;
             if (!element.IsEmpty)
             {
-                Version version;
-                if (element["Version"] != null)
-                {
-                    version = Version.Parse(element["Version"].InnerText);
-                }
-                else
-                {
-                    version = new Version(1, 0, 0);
-                }
-                lblVersion.Text = $"Version: {version}";
                 if (element["AutoSplitEnabled"] != null)
                 {
                     enableAutoSplitterChk.Checked = Convert.ToBoolean(element["AutoSplitEnabled"].InnerText);
@@ -317,10 +308,11 @@ namespace LiveSplit.Crash4LoadRemover.Controls
                     framesToWaitForSwirl.Value = MaxFramesToWaitForSwirl = 100; //Default value - For situations where you just update the dll and dont open the settings window.
                 }
 
-                if (element["SaveDetectionLog"] != null)
-                {
-                    chkSaveDetectionLog.Checked = Convert.ToBoolean(element["SaveDetectionLog"].InnerText);
-                }
+                //if (element["SaveDetectionLog"] != null)
+                //{
+                //    chkSaveDetectionLog.Checked = Convert.ToBoolean(element["SaveDetectionLog"].InnerText);
+                //    SaveDetectionLog = chkSaveDetectionLog.Checked;
+                //}
 
                 if (element["AutoSplitGames"] != null)
                 {

@@ -22,7 +22,7 @@ namespace LiveSplit.Crash4LoadRemover.Memory
 
 		public bool ProcessHooked => Process != null && !Process.HasExited;
 
-		public Process Process { get; private set; }
+		public Process Process { get; protected set; }
 
 		public bool HookProcess()
 		{

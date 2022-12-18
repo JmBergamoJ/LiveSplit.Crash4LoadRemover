@@ -5,7 +5,17 @@
 			<file path="Components/LiveSplit.Crash4LoadRemover.Steam.dll" status="changed"/>
 		</files>
 		<changelog>
-			<change>Initial Release. Based on 1.1 version of the original.</change>
+			<change>Initial Release. Based on 1.1 version of the original bnet-working version.</change>
+		</changelog>
+	</update>
+	<update version="1.0.2">
+		<files>
+			<file path="Components/LiveSplit.Crash4LoadRemover.Steam.dll" status="changed"/>
+		</files>
+		<changelog>
+			<change>"Fixed" detection log.</change>
+			<change>Added More distinctions between the bnet/steam components.</change>
+			<change>Fixed an issue with the game process hook that can happen when you launch the game before LiveSplit.</change>
 		</changelog>
 	</update>
 </updates>

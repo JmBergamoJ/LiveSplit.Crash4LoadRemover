@@ -37,6 +37,7 @@ namespace LiveSplit.Crash4LoadRemover.Memory
         {
             try
             {
+                IsPointerValid = true;
                 Read();
             }
             catch (Exception e)
@@ -44,8 +45,6 @@ namespace LiveSplit.Crash4LoadRemover.Memory
                 Logging.Write(e.ToString());
                 IsPointerValid = false;
             }
-
-            IsPointerValid = true;
         }
 
         public T Read()
@@ -53,10 +52,10 @@ namespace LiveSplit.Crash4LoadRemover.Memory
             if (!string.IsNullOrEmpty(ModuleName))
             {
                 var module = FindModule(Process.Modules, ModuleName);
-                if(module != null)
+                if (module != null)
                     return Process.Read<T>(module.BaseAddress, offsets);
                 else
-                    return Process.Read<T>(Process.MainModule.BaseAddress, offsets);
+                    throw new Exception($"Could not locate Module {ModuleName}");
             }
             else
             {
