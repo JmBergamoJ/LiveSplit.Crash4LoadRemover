@@ -23,7 +23,12 @@ namespace LiveSplit.Crash4LoadRemover.Memory
             #endregion
 
             #region Patch 1 - 1.1.04062021+
-            Loading = new GamePointer<byte>("Loading", true, 0x041A1538, 0xB0);
+            //Loading = new GamePointer<byte>("Loading", true, 0x041A1538, 0xB0);
+            //Swirl = new GamePointer<byte>("Swirl", true, 0x041883A0, 0x7C0, 0xC0, 0x2F8);
+            #endregion
+
+            #region Battle.net - Fix
+            Loading = new GamePointer<byte>("Loading", true, 0x04058F3C);
             Swirl = new GamePointer<byte>("Swirl", true, 0x041883A0, 0x7C0, 0xC0, 0x2F8);
             #endregion
 

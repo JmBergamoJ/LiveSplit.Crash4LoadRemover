@@ -96,7 +96,7 @@ namespace LiveSplit.UI.Components
             timer.InitializeGameTime();
             timerStarted = true;
 
-            ReloadLogFile();
+            //ReloadLogFile();
         }
 
         private void timer_OnUndoSplit(object sender, EventArgs e)
@@ -231,14 +231,15 @@ namespace LiveSplit.UI.Components
         }
 
         private bool loading = false;
+        private bool swirlLoading = false;
         private bool doneLoading = true;
 
         private void OnLoadingChange(byte oldLoading, byte newLoading)
         {
             if (timerStarted)
             {
-                loadStartTime = timer.CurrentState.CurrentTime.RealTime;
-                UpdateLoadingState(oldLoading, newLoading, false);
+                loadStartTime = timer.CurrentState.CurrentTime.GameTime;
+                UpdateLoadingState(oldLoading, newLoading, true);
                 UpdateGameTimerState();
                 if (settings.AutoSplitterEnabled && !(settings.AutoSplitterDisableOnSkipUntilSplit && LastSplitSkip))
                 {
@@ -258,24 +259,46 @@ namespace LiveSplit.UI.Components
         private void OnSwirlChange(byte oldSwirl, byte newSwirl)
         {
             framesSinceStartOfLoad = 0;
-            loadStartTime = null;
+            System.Diagnostics.Debug.WriteLine($"[{DateTime.Now}]Swirl - currentValue: {oldSwirl} - newValue: {newSwirl}");
             if (timerStarted)
             {
-                if (loading)
-                    UpdateLoadingState(oldSwirl, newSwirl, true);
-                UpdateGameTimerState();
+                UpdateSwirlState(oldSwirl, newSwirl, true);
+                UpdateGameTimerStateSwirl();
             }
+            loadStartTime = null;
         }
 
         private void UpdateGameTimerState()
         {
-            timer.CurrentState.IsGameTimePaused = loading || !doneLoading;
+            /*When the second part of the loading starts, stop checking for this*/
+            if (!swirlLoading)
+            {
+                timer.CurrentState.IsGameTimePaused = (loading);
+            }
+        }
+
+        private void UpdateGameTimerStateSwirl()
+        {
+            timer.CurrentState.IsGameTimePaused = (swirlLoading);
         }
 
         private void UpdateLoadingState(byte oldState, byte newState, bool done)
         {
-            loading = oldState == 0 && newState == 1;
+            System.Diagnostics.Debug.WriteLine($"[{DateTime.Now}]Loading - oldState: {oldState} - newState: {newState}");
+            loading = newState != 1;
             doneLoading = done;
+        }
+
+        private void UpdateSwirlState(byte oldState, byte newState, bool done)
+        {
+
+            swirlLoading = newState != 0;
+            doneLoading = done;
+            if (swirlLoading)
+            {
+                var currentGameTime = loadStartTime;
+                timer.CurrentState.SetGameTime(currentGameTime);
+            }
         }
 
 
@@ -285,21 +308,20 @@ namespace LiveSplit.UI.Components
             {
                 settings.ChangeAutoSplitSettingsToGameName(GameName, GameCategory);
 
-                ReloadLogFile();
+                //ReloadLogFile();
             }
-            if (loading)
-                framesSinceStartOfLoad++;
+            //if (loading)
+            //    framesSinceStartOfLoad++;
 
-            if (loading && !doneLoading && framesSinceStartOfLoad >= settings.MaxFramesToWaitForSwirl) /*Arbitrary number of frames to wait*/
-            {
-                var currentGameTime = timer.CurrentState.CurrentTime.GameTime;
-                currentGameTime += timer.CurrentState.CurrentTime.RealTime - loadStartTime;
-                framesSinceStartOfLoad = 0;
-                UpdateLoadingState(1, 0, true);
-                timer.CurrentState.SetGameTime(currentGameTime);
-                UpdateGameTimerState();
-                loadStartTime = null;
-            }
+            //if ((loading) && !doneLoading && framesSinceStartOfLoad >= settings.MaxFramesToWaitForSwirl) /*Arbitrary number of frames to wait*/
+            //{
+            //    var currentGameTime = timer.CurrentState.CurrentTime.GameTime;
+            //    currentGameTime += timer.CurrentState.CurrentTime.RealTime - loadStartTime;
+            //    framesSinceStartOfLoad = 0;
+            //    timer.CurrentState.SetGameTime(currentGameTime);
+            //    UpdateGameTimerState();
+            //    loadStartTime = null;
+            //}
 
 
             liveSplitState = state;
@@ -359,15 +381,15 @@ namespace LiveSplit.UI.Components
                     var currentGameTime = timer.CurrentState.CurrentTime.GameTime;
                     currentGameTime += timer.CurrentState.CurrentTime.RealTime - loadStartTime;
                     framesSinceStartOfLoad = 0;
-                    UpdateLoadingState(1, 0, true);
+                    UpdateLoadingState(1, 3, true);
                     timer.CurrentState.SetGameTime(currentGameTime);
                     UpdateGameTimerState();
                     loadStartTime = null;
                 }
                 return;
             }
-
-            memory.Refresh();
+            if (timerStarted)
+                memory.Refresh();
         }
 
         public void Dispose()
