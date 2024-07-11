@@ -28,8 +28,18 @@ namespace LiveSplit.Crash4LoadRemover.Memory
             #endregion
 
             #region Steam - Release
-            Loading = new GamePointer<byte>("Loading", "RTWorkQ.DLL", true, 0x26950);
+            //Loading = new GamePointer<byte>("Loading", "RTWorkQ.DLL", true, 0x26950);
+            //Swirl = new GamePointer<byte>("Swirl", null, true, 0x043EF190, 0x7C0, 0x31C);
+            #endregion
+
+            #region Steam - Fix
+            Loading = new GamePointer<byte>("Loading", null, true, 0x043C41F0, 0xA8);
             Swirl = new GamePointer<byte>("Swirl", null, true, 0x043EF190, 0x7C0, 0x31C);
+            #endregion
+
+            #region BattleNet - Fix
+            //Loading = new GamePointer<byte>("Loading", null, true, 0x04058F3C);
+            //Swirl = new GamePointer<byte>("Swirl", null, true, 0x041883A0, 0x7C0, 0xC0, 0x2F8);
             #endregion
 
             #endregion

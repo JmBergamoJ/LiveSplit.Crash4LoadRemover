@@ -232,6 +232,7 @@ namespace LiveSplit.UI.Components
         }
 
         private bool loading = false;
+        private bool swirlLoading = false;
         private bool doneLoading = true;
 
         private void OnLoadingChange(byte oldLoading, byte newLoading)
@@ -259,30 +260,42 @@ namespace LiveSplit.UI.Components
         private void OnSwirlChange(byte oldSwirl, byte newSwirl)
         {
             framesSinceStartOfLoad = 0;
+            System.Diagnostics.Debug.WriteLine($"[{DateTime.Now}]Swirl - currentValue: {oldSwirl} - newValue: {newSwirl}");
             if (timerStarted)
             {
                 UpdateSwirlState(oldSwirl, newSwirl, true);
-                UpdateGameTimerState();
+                UpdateGameTimerStateSwirl();
             }
             loadStartTime = null;
         }
 
         private void UpdateGameTimerState()
         {
-            timer.CurrentState.IsGameTimePaused = (loading || !doneLoading);
+            /*When the second part of the loading starts, stop checking for this*/
+            if (!swirlLoading)
+            {
+                timer.CurrentState.IsGameTimePaused = (loading);
+            }
+        }
+
+        private void UpdateGameTimerStateSwirl()
+        {
+            timer.CurrentState.IsGameTimePaused = (swirlLoading);
         }
 
         private void UpdateLoadingState(byte oldState, byte newState, bool done)
         {
-            loading = oldState == 3 && newState == 1;
+            System.Diagnostics.Debug.WriteLine($"[{DateTime.Now}]Loading - oldState: {oldState} - newState: {newState}");
+            loading = newState != 0;
             doneLoading = done;
         }
 
         private void UpdateSwirlState(byte oldState, byte newState, bool done)
         {
-            loading = newState != 0;
+
+            swirlLoading = newState != 0;
             doneLoading = done;
-            if (loading)
+            if (swirlLoading)
             {
                 var currentGameTime = loadStartTime;
                 timer.CurrentState.SetGameTime(currentGameTime);
@@ -376,8 +389,8 @@ namespace LiveSplit.UI.Components
                 }
                 return;
             }
-
-            memory.Refresh();
+            if (timerStarted)
+                memory.Refresh();
         }
 
         public void Dispose()
