@@ -264,6 +264,7 @@ namespace LiveSplit.UI.Components
             {
                 UpdateSwirlState(oldSwirl, newSwirl, true);
                 UpdateGameTimerStateSwirl();
+                doneLoading = swirlLoading;
             }
             loadStartTime = null;
         }
@@ -279,7 +280,7 @@ namespace LiveSplit.UI.Components
 
         private void UpdateGameTimerStateSwirl()
         {
-            timer.CurrentState.IsGameTimePaused = (swirlLoading);
+            timer.CurrentState.IsGameTimePaused = (swirlLoading && doneLoading);
         }
 
         private void UpdateLoadingState(byte oldState, byte newState, bool done)
@@ -293,7 +294,6 @@ namespace LiveSplit.UI.Components
         {
 
             swirlLoading = newState != 0;
-            doneLoading = done;
             if (swirlLoading)
             {
                 var currentGameTime = loadStartTime;

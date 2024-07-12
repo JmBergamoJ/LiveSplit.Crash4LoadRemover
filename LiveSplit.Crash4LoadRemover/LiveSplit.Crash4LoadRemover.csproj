@@ -78,8 +78,5 @@
       <DependentUpon>ComponentSettings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="update.LiveSplit.Crash4LoadRemover.xml" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
