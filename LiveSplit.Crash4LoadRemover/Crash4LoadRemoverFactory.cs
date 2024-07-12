@@ -13,9 +13,9 @@ namespace LiveSplit.Crash4LoadRemover
 {
     public class Crash4LoadRemoverFactory : IComponentFactory
     {
-        public string ComponentName => "Crash 4: IAT Load Remover (Memory-Based)";
+        public string ComponentName => "Crash 4: IAT Load Remover (Memory-Based - Battle.Net)";
 
-        public string Description => "Automatically detects and removes loads (GameTime) for Crash Bandicoot 4: It's About Time on PC.";
+        public string Description => "Automatically detects and removes loads (GameTime) for Crash Bandicoot 4: It's About Time on PC (Battle.Net).";
 
         public ComponentCategory Category => ComponentCategory.Control;
 

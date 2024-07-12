@@ -1,11 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <updates>
+	<update version="1.2">
+		<files>
+			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed"/>
+		</files>
+		<changelog>
+			<change>Updated Memory Pointers to remove external reference dependencies and increased precision on load detection [Thanks McCrodi].</change>
+		</changelog>
+	</update>
 	<update version="1.1">
 		<files>
 			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed"/>
 		</files>
 		<changelog>
-			<change>Changed Memory Pointers for Game Patch 1 (1.1.04062021) [Thanks Crodi].</change>
+			<change>Changed Memory Pointers for Game Patch 1 (1.1.04062021) [Thanks McCrodi].</change>
 		</changelog>
 	</update>
 	<update version="1.0.3">

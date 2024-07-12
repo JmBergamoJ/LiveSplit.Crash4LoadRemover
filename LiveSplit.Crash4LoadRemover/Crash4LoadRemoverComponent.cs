@@ -68,7 +68,7 @@ namespace LiveSplit.UI.Components
             Logging.Write("[Component] Component created.");
         }
 
-        public string ComponentName => "Crash 4: IAT Load Remover (Memory-Based)";
+        public string ComponentName => "Crash 4: IAT Load Remover (Memory-Based - Battle.Net)";
         public float HorizontalWidth => 0;
         public float VerticalHeight => 0;
         public float MinimumWidth => 0;
