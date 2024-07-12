@@ -4,14 +4,17 @@
 state("Lava-Win64-Shipping")
 {
 	//Release Version Pointer Values
-    	//byte Loading : 0x03C34B70, 0x718; //First part of the loading screen, showing the name of the level and such
+    //byte Loading : 0x03C34B70, 0x718; //First part of the loading screen, showing the name of the level and such
 	//byte Swirl : 0x0416E510, 0x7C0, 0xC0, 0x2F8; //Second part of the loading screen, showing the blue swirl
 	//The memory value for Swirl also interacts with other elements in the game sometimes but it's not an issue here because both values have to be combined to count as a load
 	
 	//Patch 1 Pointer Values
-	byte Loading : 0x041A1538, 0xB0;
-	byte Swirl : 0x041883A0, 0x7C0, 0xC0, 0x2F8; 
+	//byte Loading : 0x041A1538, 0xB0;
+	//byte Swirl : 0x041883A0, 0x7C0, 0xC0, 0x2F8; 
 	
+	//New pointer values
+    byte Loading : 0x04058F3C; //First part of the loading screen, showing the name of the level and such
+	byte Swirl : 0x041883A0, 0x7C0, 0xC0, 0x2F8; //Second part of the loading screen, showing the blue swirl
 }
 
 init
