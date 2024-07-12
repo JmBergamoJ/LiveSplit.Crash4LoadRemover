@@ -1,7 +1,7 @@
 state("CrashBandicoot4")
 {
-    byte Loading : "RTWorkQ.DLL", 0x26950;
-	byte Swirl : 0x043EF190, 0x7C0, 0x31C;
+    byte Loading : 0x043C41F0, 0xA8; 
+	byte Swirl : 0x043EF190, 0x7C0, 0x31C; 
 }
 
 init
