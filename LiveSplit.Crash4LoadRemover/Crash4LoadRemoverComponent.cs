@@ -244,7 +244,7 @@ namespace LiveSplit.UI.Components
                 UpdateGameTimerState();
                 if (settings.AutoSplitterEnabled && !(settings.AutoSplitterDisableOnSkipUntilSplit && LastSplitSkip))
                 {
-                    if (loading)
+                    if (loading && !swirlLoading)
                     {
                         NumberOfLoadsPerSplit[liveSplitState.CurrentSplitIndex]++;
 
