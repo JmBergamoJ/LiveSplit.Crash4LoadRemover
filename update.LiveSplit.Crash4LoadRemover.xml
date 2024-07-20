@@ -31,7 +31,7 @@
 			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed"/>
 		</files>
 		<changelog>
-			<change>Fix to autosplitting incorrectly splitting time on some situations.</change>
+			<change>Fix for the autosplitter incorrectly splitting time on some situations.</change>
 		</changelog>
 	</update>
 </updates>
