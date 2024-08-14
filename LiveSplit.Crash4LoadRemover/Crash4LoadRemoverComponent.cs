@@ -243,7 +243,7 @@ namespace LiveSplit.UI.Components
                 UpdateGameTimerState();
                 if (settings.AutoSplitterEnabled && !(settings.AutoSplitterDisableOnSkipUntilSplit && LastSplitSkip))
                 {
-                    if (loading && !swirlLoading)
+                    if (loading)
                     {
                         NumberOfLoadsPerSplit[liveSplitState.CurrentSplitIndex]++;
 
@@ -272,7 +272,7 @@ namespace LiveSplit.UI.Components
         private void UpdateGameTimerState()
         {
             /*When the second part of the loading starts, stop checking for this*/
-            if (!swirlLoading)
+            if (!swirlLoading || loading)
             {
                 timer.CurrentState.IsGameTimePaused = (loading);
             }
@@ -280,7 +280,8 @@ namespace LiveSplit.UI.Components
 
         private void UpdateGameTimerStateSwirl()
         {
-            timer.CurrentState.IsGameTimePaused = (swirlLoading && doneLoading);
+            if (swirlLoading || !loading)
+                timer.CurrentState.IsGameTimePaused = (swirlLoading && doneLoading);
         }
 
         private void UpdateLoadingState(byte oldState, byte newState, bool done)
