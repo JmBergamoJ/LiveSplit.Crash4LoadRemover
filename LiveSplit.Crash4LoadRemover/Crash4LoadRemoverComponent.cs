@@ -239,6 +239,10 @@ namespace LiveSplit.UI.Components
             if (timerStarted)
             {
                 loadStartTime = timer.CurrentState.CurrentTime.GameTime;
+
+                //System.Diagnostics.Debug.WriteLine($"[{DateTime.Now}]loadStartTime - currentValue: {loadStartTime}");
+                //System.Diagnostics.Debug.WriteLine($"[{DateTime.Now}]current GameTime - currentValue: {timer.CurrentState.CurrentTime.GameTime}");
+
                 UpdateLoadingState(oldLoading, newLoading, true);
                 UpdateGameTimerState();
                 if (settings.AutoSplitterEnabled && !(settings.AutoSplitterDisableOnSkipUntilSplit && LastSplitSkip))
@@ -287,7 +291,10 @@ namespace LiveSplit.UI.Components
         private void UpdateLoadingState(byte oldState, byte newState, bool done)
         {
             System.Diagnostics.Debug.WriteLine($"[{DateTime.Now}]Loading - oldState: {oldState} - newState: {newState}");
-            loading = newState != 1;
+            loading = newState < 1;
+            if(newState == 0 && oldState > 1) /*incorrect loading*/
+                loading = false;
+            System.Diagnostics.Debug.WriteLine($"[{DateTime.Now}]Loading: {loading}");
             doneLoading = done;
         }
 
@@ -295,6 +302,7 @@ namespace LiveSplit.UI.Components
         {
 
             swirlLoading = newState != 0;
+            System.Diagnostics.Debug.WriteLine($"[{DateTime.Now}]swirlLoading: {swirlLoading}");
             if (swirlLoading)
             {
                 var currentGameTime = loadStartTime;
@@ -329,6 +337,7 @@ namespace LiveSplit.UI.Components
 
             UpdateMemoryRead();
 
+            System.Diagnostics.Debug.WriteLine($"[{DateTime.Now}]memory.ProcessHooked: {memory.ProcessHooked}");
             if (memory.ProcessHooked)
             {
                 invalidator?.Invalidate(0, 0, width, height);
@@ -379,13 +388,17 @@ namespace LiveSplit.UI.Components
             {
                 if (timerStarted)
                 {
-                    var currentGameTime = timer.CurrentState.CurrentTime.GameTime;
-                    currentGameTime += timer.CurrentState.CurrentTime.RealTime - loadStartTime;
-                    framesSinceStartOfLoad = 0;
-                    UpdateLoadingState(1, 3, true);
-                    timer.CurrentState.SetGameTime(currentGameTime);
-                    UpdateGameTimerState();
+                    loading = false;
+                    swirlLoading = false;
+                    timer.CurrentState.IsGameTimePaused = false;
                     loadStartTime = null;
+                    //var currentGameTime = timer.CurrentState.CurrentTime.GameTime;
+                    //currentGameTime += timer.CurrentState.CurrentTime.RealTime - loadStartTime;
+                    //framesSinceStartOfLoad = 0;
+                    //UpdateLoadingState(0, 1, true);
+                    //timer.CurrentState.SetGameTime(currentGameTime);
+                    //UpdateGameTimerState();
+                    //loadStartTime = null;
                 }
                 return;
             }

@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <updates>
+	<update version="1.2.3">
+		<files>
+			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed"/>
+		</files>
+		<changelog>
+			<change>Fixed autospliiter working incorrecly on N.Verted Levels.</change>
+			<change>Timer will unpause when the game is closed.</change>
+		</changelog>
+	</update>
 	<update version="1.2.2">
 		<files>
 			<file path="Components/LiveSplit.Crash4LoadRemover.dll" status="changed"/>
