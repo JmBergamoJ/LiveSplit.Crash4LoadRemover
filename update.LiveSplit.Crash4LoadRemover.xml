@@ -34,4 +34,13 @@
 			<change>Fix for the autosplitter incorrectly splitting time on some situations.</change>
 		</changelog>
 	</update>
+	<update version="1.2.3">
+		<files>
+			<file path="Components/LiveSplit.Crash4LoadRemover.Steam.dll" status="changed"/>
+		</files>
+		<changelog>
+			<change>Fixed autospliiter working incorrecly on N.Verted Levels.</change>
+			<change>Timer will unpause when the game is closed.</change>
+		</changelog>
+	</update>
 </updates>
